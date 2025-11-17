@@ -39,7 +39,7 @@ public class TeleportCurve : MonoBehaviour
         else if (ARAVRInput.GetUp(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.RTouch))
         {   
             //내가 그린 커브 보려면 아래 줄 주석 처리
-            // lr.enabled = false;
+            lr.enabled = false;
 
             if(teleportCircleUI.gameObject.activeSelf)
             {   

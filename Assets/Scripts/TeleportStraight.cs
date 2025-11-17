@@ -23,59 +23,60 @@ public class TeleportStraight : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   if(ARAVRInput.GetDown(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.RTouch))
-        {
-            //텔레포트 UI 그리기
-            lr.enabled = true; 
+    {   
+        // if(ARAVRInput.GetDown(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.RTouch))
+        // {
+        //     //텔레포트 UI 그리기
+        //     lr.enabled = true; 
             
-        }
+        // }
 
-        else if(ARAVRInput.GetUp(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.RTouch))
-        {
-            //텔레포트 UI 그리기
-            // lr.enabled = false;
+        // else if(ARAVRInput.GetUp(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.RTouch))
+        // {
+        //     //텔레포트 UI 그리기
+        //     // lr.enabled = false;
 
-            if(teleportCircleUI.gameObject.activeSelf)
-            {   
+        //     if(teleportCircleUI.gameObject.activeSelf)
+        //     {   
 
-                //동시 접근을 막기 위해 false처리
-                GetComponent<CharacterController>().enabled = false;
-                transform.position = teleportCircleUI.position + Vector3.up;
-                GetComponent<CharacterController>().enabled = true;
-            }
+        //         //동시 접근을 막기 위해 false처리
+        //         GetComponent<CharacterController>().enabled = false;
+        //         transform.position = teleportCircleUI.position + Vector3.up;
+        //         GetComponent<CharacterController>().enabled = true;
+        //     }
 
-            teleportCircleUI.gameObject.SetActive(false);
+        //     teleportCircleUI.gameObject.SetActive(false);
             
-        }
-        //왼쪽 컨트롤러의 [one] 버튼을 누르고 있을 때
-        else if (ARAVRInput.Get(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.RTouch))
-        {
-            //텔레포트 UI 그리기
-            //
-            Ray ray = new Ray(ARAVRInput.RHandPosition, ARAVRInput.RHandDirection);
-            RaycastHit hitInfo;
-            int layer = 1 << LayerMask.NameToLayer("Terrain");
+        // }
+        // //왼쪽 컨트롤러의 [one] 버튼을 누르고 있을 때
+        // else if (ARAVRInput.Get(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.RTouch))
+        // {
+        //     //텔레포트 UI 그리기
+        //     //
+        //     Ray ray = new Ray(ARAVRInput.RHandPosition, ARAVRInput.RHandDirection);
+        //     RaycastHit hitInfo;
+        //     int layer = 1 << LayerMask.NameToLayer("Terrain");
 
-            if(Physics.Raycast(ray, out hitInfo, 200, layer))
-            {
-                //부딪힌 지전에 텔레포트 UI 표시
-                lr.SetPosition(0,ray.origin);
-                lr.SetPosition(1, hitInfo.point);
+        //     if(Physics.Raycast(ray, out hitInfo, 200, layer))
+        //     {
+        //         //부딪힌 지점에 텔레포트 UI 표시
+        //         lr.SetPosition(0,ray.origin);
+        //         lr.SetPosition(1, hitInfo.point);
 
-                teleportCircleUI.gameObject.SetActive(true);
-                teleportCircleUI.position = hitInfo.point;
+        //         teleportCircleUI.gameObject.SetActive(true);
+        //         teleportCircleUI.position = hitInfo.point;
 
-                teleportCircleUI.forward = hitInfo.normal;
+        //         teleportCircleUI.forward = hitInfo.normal;
 
-                teleportCircleUI.localScale = originScale * Mathf.Max(1, hitInfo.distance);
-            }
-            else
-            {
-                lr.SetPosition(0,ray.origin);
-                lr.SetPosition(1,ray.origin + ARAVRInput.LHandDirection *200);
+        //         teleportCircleUI.localScale = originScale * Mathf.Max(1, hitInfo.distance);
+        //     }
+        //     else
+        //     {
+        //         lr.SetPosition(0,ray.origin);
+        //         lr.SetPosition(1,ray.origin + ARAVRInput.LHandDirection *200);
 
-                teleportCircleUI.gameObject.SetActive(false);
-            }
-        }
+        //         teleportCircleUI.gameObject.SetActive(false);
+        //     }
+        // }
     }
 }

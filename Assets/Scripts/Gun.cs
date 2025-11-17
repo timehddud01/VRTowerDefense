@@ -29,7 +29,7 @@ public class Gun : MonoBehaviour{
             bulletAudio.Stop();
             bulletAudio.Play();
             
-                //Ray를 카메라의 위치로부터 나가도록 만든가.
+            //Ray를 카메라의 위치로부터 나가도록 만든다.
             Ray ray = new Ray(ARAVRInput.RHandPosition, ARAVRInput.RHandDirection);
 
             //Ray의 충돌 정보를 저장하기 위한 변수 지정
